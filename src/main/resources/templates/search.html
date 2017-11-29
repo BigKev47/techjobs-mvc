@@ -35,10 +35,40 @@
     </form>
 
     <hr />
+    <div class="container body-content">
+        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+        <div th:if="${jobs} and ${jobs.size()}">
 
-    <!-- TODO #2 - Loop over jobs map to display all job fields -->
+            <table th:each="jobs.searchType : ${jobs}" class="job-listing">
+                <tbody>
+                <tr>
+                    <td>Position Type</td>
+                    <td>${jobs.position type}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>${jobs.name}</td>
+                </tr>
+                <tr>
+                    <td>Employer</td>
+                    <td>Lockerdome</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>Saint Louis</td>
+                </tr>
+                <tr>
+                    <td>Core Competency</td>
+                    <td>Statistical Analysis</td>
+                </tr>
+                </tbody>
+
+            </table>
+            <br />
+
+        </div>
+    </div>
 
 </div>
-
 </body>
 </html>

@@ -8,7 +8,7 @@
 
 <div class="container body-content">
 
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
 
     <form th:action="@{/search/results}">
         <h2>Search by:</h2>
@@ -35,34 +35,15 @@
     </form>
 
     <hr />
-    <div class="container body-content">
-        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <div th:fragment="listjobs">
+        <h2 th:text="${#strings.capitalizeWords(title)}"></h2>
         <div th:if="${jobs} and ${jobs.size()}">
 
-            <table th:each="jobs.searchType : ${jobs}" class="job-listing">
-                <tbody>
-                <tr>
-                    <td>Position Type</td>
-                    <td>${jobs.position type}</td>
+            <table th:each="job : ${jobs}" class="job-listing">
+                <tr th:each="column : ${job}">
+                    <td th:text="${#strings.capitalizeWords(column.key)}"></td>
+                    <td th:text="${column.value}"></td>
                 </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>${jobs.name}</td>
-                </tr>
-                <tr>
-                    <td>Employer</td>
-                    <td>Lockerdome</td>
-                </tr>
-                <tr>
-                    <td>Location</td>
-                    <td>Saint Louis</td>
-                </tr>
-                <tr>
-                    <td>Core Competency</td>
-                    <td>Statistical Analysis</td>
-                </tr>
-                </tbody>
-
             </table>
             <br />
 

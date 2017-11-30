@@ -39,10 +39,18 @@ public class SearchController {
     }*/
     @RequestMapping(value = "results")
     public String listJobsByColumnAndValue(Model model,
-                                                          @RequestParam String searchType, @RequestParam String searchTerm) {
-        ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+                                           @RequestParam String searchType,
+                                           @RequestParam String searchTerm) {
+        ArrayList<HashMap<String, String>> jobs;
+        if(searchType.equals("all")) {
+            jobs = JobData.findByValue(searchTerm);
+        }
+        else{
+            jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
         model.addAttribute("title", jobs.size()+" Results Found");
-        model.addAttribute("position type", jobs.);
+        model.addAttribute("jobs", jobs);
+        model.addAttribute("columns", ListController.columnChoices);
 
         return "search";
     }
